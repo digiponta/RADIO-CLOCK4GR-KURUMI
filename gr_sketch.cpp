@@ -1,4 +1,4 @@
-/*GR-KURUMI Sketch Template Version: V1.12*/
+/* GR-KURUMI Sketch Template Version: V1.12*/
 /* made by DIGI-P (C) 2016 */
 /* This AS-IS file is offered with a BSD lite license */
 
