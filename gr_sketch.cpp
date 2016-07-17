@@ -20,7 +20,7 @@ unsigned long cntTime = 0;
 int prev = 0; 
 int ready = 0;
 unsigned char sec, min, hour;
-int cnt = 0;
+unsigned int cnt = 0;
 
 void myCycle( unsigned long msec )
 {
