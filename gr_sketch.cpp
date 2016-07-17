@@ -1,4 +1,4 @@
-/* GR-KURUMI Sketch Template Version: V1.12*/
+/*GR-KURUMI Sketch Template Version: V1.12*/
 /* made by DIGI-P (C) 2016 */
 /* This AS-IS file is offered with a BSD lite license */
 
@@ -36,13 +36,13 @@ void myCycle( unsigned long msec )
     digitalWrite(led_green, HIGH);
 //  	Serial.println( cntTime );
 
-  	if ((cntTime>100) && (cntTime<300)) { // Marker
+  	if ((cntTime>50 ) && (cntTime<350)) { // Marker
   		val = -1;
   	} else
-  	if ((cntTime>400) && (cntTime<600)) { // 1
+  	if ((cntTime>350) && (cntTime<650)) { // 1
   		val = 1;
   	} else
-  	if ((cntTime>700) && (cntTime<900)) { // 0 
+  	if ((cntTime>650) && (cntTime<950)) { // 0 
   		val = 0;
   	} else {
   		// error
@@ -52,6 +52,10 @@ void myCycle( unsigned long msec )
   		goto MY_EXIT;
   	}
   	cntTime = 0;
+  	if (phase >= sizeof(bit) ) {
+		cntTime = 0;
+  		goto MY_EXIT;
+  	}
     bit[phase] = val;
   	
     switch (phase) {
@@ -73,11 +77,11 @@ void myCycle( unsigned long msec )
     	
     	phase++;
   		digitalWrite(led_red, LOW);
-		Serial.println( "" );
-		Serial.print( "*" );
+//		Serial.println( "" );
+//		Serial.print( "*" );
     	break;
     case 59:
-    	Serial.print( val );
+//    	Serial.print( val );
     	min = 10*(bit[2]*4 + bit[3]*2 + bit[4])
     		+ bit[6]*8 + bit[7]*4 +bit[8]*2 + bit[9];
     	hour = 10*(bit[13]*2 + bit[14])
@@ -87,9 +91,10 @@ void myCycle( unsigned long msec )
 		break;
 		
     default:
-    	Serial.print( val );
-    	if (val == -1) Serial.println( "" );
+//    	Serial.print( val );
+//    	if (val == -1) Serial.println( "" );
    		phase++;
+   		if (phase > 60) phase = 0;
     } 	
   }
   
@@ -169,27 +174,13 @@ void loop() {
 	
 	if (ready) {
 		ready = 0;
+#if 0
 		Serial.println( "" );
     	Serial.println( "##########" );
     	Serial.print( hour );
 	   	Serial.print( ":" );
     	Serial.println( min );
     	Serial.println( "##########" );
-	}
-
-#if 0
-  Serial.println("Hello");
-  digitalWrite(led_red, HIGH);   // turn the RED LED off, glow sky blue.
-  delay(200);                   // wait 200ms
-
-  digitalWrite(led_red, LOW);    // turn the RED LED on
-  digitalWrite(led_green, HIGH); // turn the GREEN LED off, glow pink.
-  delay(200);                   // wait 200ms
-
-  digitalWrite(led_green, LOW);  // turn the GREEN LED on
-  digitalWrite(led_blue, HIGH);  // turn the BLUE LED off, glow yellow.
-  delay(200);                   // wait for a second
-
-  digitalWrite(led_blue, LOW);   // turn the BLUE LED on
 #endif
+	}
 }
