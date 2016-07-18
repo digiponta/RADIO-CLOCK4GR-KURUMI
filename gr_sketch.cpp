@@ -29,6 +29,7 @@ void myCycle( unsigned long msec )
   if (curr < prev) { // UP
   	cntTime = 0;
   	cnt++;
+  	if (cnt >= 8) cnt = 0;
   	digitalWrite(led_green, LOW);
   }
   if (curr > prev) { // DOWN
@@ -142,7 +143,7 @@ void loop() {
 	int x,y;
 	int v;
 	
-	for (x=0, v=(cnt % 8); x<8; x++) {
+	for (x=0, v=cnt; x<8; x++) {
     	if (x == v) {
     	    matrix.drawPixel( x, 0, LED_RED );
     	    matrix.drawPixel( 7-x, 7, LED_RED );
