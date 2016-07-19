@@ -19,7 +19,7 @@ int phase = 0;
 unsigned long cntTime = 0;
 int prev = 0; 
 int ready = 0;
-unsigned char sec, min, hour;
+int sec, min, hour;
 unsigned int cnt = 0;
 
 void myCycle( unsigned long msec )
